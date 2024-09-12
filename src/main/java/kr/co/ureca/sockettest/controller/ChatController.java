@@ -60,11 +60,12 @@ public class ChatController {
 
         userSessions.add(sessionId);
 //        System.out.println(userSessions);
-        message.setId(message.getId());
+//        message.setId(message.getId());
         message.setMessage(message.getName() + "님이 입장하였습니다");
         message.setCreatedDate(formattedDate);
 
-        template.convertAndSend("/sub/coupong", message);
+        ChatMessage chatMessage = new ChatMessage(message.getName(),message.getMessage(), message.getCreatedDate());
+        template.convertAndSend("/sub/coupong", chatMessage);
         // "/sub/coupong"으로 들어온 객체 message를 도착지점을 구독하고 있는 사용자에게 메시지 전달
     }
 
@@ -73,7 +74,7 @@ public class ChatController {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         String formattedDate = LocalDateTime.now(ZoneId.of("Asia/Seoul")).format(formatter);
 //        System.out.println(userSessions);
-        message.setId(message.getId());
+//        message.setId(message.getId());
         message.setCreatedDate(formattedDate);
         template.convertAndSend("/sub/coupong", message);
     }
@@ -90,14 +91,16 @@ public class ChatController {
 
         System.out.println("after exit" +userSessions);
 
-        message.setId(message.getId());
+//        message.setId(message.getId());
         message.setMessage(message.getName() + "님이 퇴장하였습니다");
         message.setCreatedDate(formattedDate);
 
-        // 모든 사용자에게 메시지 전송
-        template.convertAndSend("/sub/coupong", message);
-        System.out.println("나간 사용자 : " + message.getName());
-
+        if (!userSessions.contains(sessionId)) {
+            ChatMessage chatMessage = new ChatMessage(message.getName(), message.getMessage(), message.getCreatedDate());
+            // 모든 사용자에게 메시지 전송
+            template.convertAndSend("/sub/coupong", chatMessage);
+            System.out.println("나간 사용자 : " + message.getName());
+        }
         System.out.println("Current sessions: " + userSessions);
     }
 }

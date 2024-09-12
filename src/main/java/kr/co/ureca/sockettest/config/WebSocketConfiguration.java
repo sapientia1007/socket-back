@@ -15,7 +15,7 @@ public class WebSocketConfiguration implements WebSocketMessageBrokerConfigurer 
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/coupong").setAllowedOrigins("http://localhost:3000")
+        registry.addEndpoint("/coupong").setAllowedOrigins("http://localhost:3000", "https://coupongchat.netlify.app/")
                 .withSockJS();
         // 연결 주소 = ws://localhost:8080/coupong
         // 해당 통신이 웹 소켓 통신 중 stomp 통신인 것을 확인하고 연결 => 모든 출처에서의 연결을 허용하도록 설정
