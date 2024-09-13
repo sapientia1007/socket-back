@@ -1,6 +1,6 @@
 package kr.co.ureca.sockettest.entity;
 
-import lombok.*;it
+import lombok.*;
 
 
 /* 반환되는 데이터 타입 */
