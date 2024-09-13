@@ -10,7 +10,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 /* 반환되는 데이터 타입 */
-@Entity
 @Getter @Setter
 @AllArgsConstructor
 @NoArgsConstructor
