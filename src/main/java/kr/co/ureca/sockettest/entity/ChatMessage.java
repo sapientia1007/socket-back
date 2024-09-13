@@ -1,13 +1,7 @@
 package kr.co.ureca.sockettest.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.*;
+import lombok.*;it
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 /* 반환되는 데이터 타입 */
 @Getter @Setter
