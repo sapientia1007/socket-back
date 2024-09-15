@@ -44,7 +44,7 @@ public class ChatController {
         message.setMessage(message.getName() + "님이 입장하였습니다");
         message.setCreatedDate(formattedDate);
 
-        ChatMessage chatMessage = new ChatMessage(message.getName(),message.getMessage(), message.getCreatedDate());
+        ChatMessage chatMessage = new ChatMessage("알림", message.getMessage(), message.getCreatedDate());
         template.convertAndSend("/sub/coupong", chatMessage);
         // "/sub/coupong"으로 들어온 객체 message를 도착지점을 구독하고 있는 사용자에게 메시지 전달
         updateUserCnt();
@@ -71,7 +71,7 @@ public class ChatController {
         message.setCreatedDate(formattedDate);
 
         if (username != null) {
-            ChatMessage chatMessage = new ChatMessage(message.getName(), message.getMessage(), message.getCreatedDate());
+            ChatMessage chatMessage = new ChatMessage("알림", message.getMessage(), message.getCreatedDate());
             // 모든 사용자에게 메시지 전송
             template.convertAndSend("/sub/coupong", chatMessage);
             System.out.println("나간 사용자 : " + message.getName());
